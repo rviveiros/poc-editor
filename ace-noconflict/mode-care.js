@@ -88,10 +88,10 @@ ace.define('ace/mode/care', function (require, exports, module) {
     var oop = require("ace/lib/oop");
     var TextMode = require("ace/mode/text").Mode;
     var Tokenizer = require("ace/tokenizer").Tokenizer;
-    var ExampleHighlightRules = require("ace/mode/example_highlight_rules").ExampleHighlightRules;
+    var CareHighlightRules = require("ace/mode/care_highlight_rules").ExampleHighlightRules;
 
     var Mode = function () {
-        this.$tokenizer = new Tokenizer(new ExampleHighlightRules().getRules());
+        this.$tokenizer = new Tokenizer(new CareHighlightRules().getRules());
     };
     oop.inherits(Mode, TextMode);
 
@@ -111,7 +111,7 @@ ace.define('ace/mode/care', function (require, exports, module) {
     exports.Mode = Mode;
 });
 
-ace.define('ace/mode/example_highlight_rules', function (require, exports, module) {
+ace.define('ace/mode/care_highlight_rules', function (require, exports, module) {
 
     var oop = require("ace/lib/oop");
     var TextHighlightRules = require("ace/mode/text_highlight_rules").TextHighlightRules;

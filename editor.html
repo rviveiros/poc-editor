@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>ACE in Action</title>
+<title>MODE - CARE</title>
 <style type="text/css" media="screen">
     #editor { 
         position: absolute;
@@ -37,8 +37,16 @@
 <script src="ace-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/ambiance");
+    //editor.setTheme("ace/theme/chrome");
     editor.getSession().setMode("ace/mode/care");
+
+    editor.getSession().on('change', function (e) {
+
+        console.log(e.data.action + ": " + e.data.text);
+
+
+    });
+    
 </script>
 </body>
 </html>
