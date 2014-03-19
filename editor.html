@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <title>MODE - CARE</title>
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <style type="text/css" media="screen">
     #editor { 
         position: absolute;
@@ -10,43 +12,119 @@
         bottom: 0;
         left: 0;
     }
+
+    .ace_comment {
+        pointer-events: auto;
+    }
+
+    .ace_string {
+        pointer-events: auto;
+    }
+
+    .ace_variable {
+        pointer-events: auto;
+    }
+
+    .ace_keyword {
+        pointer-events: auto;
+    }
 </style>
 </head>
 <body>
 
-<div id="editor">function foo(items) {
-    var mac = "All this is syntax highlighted";
-    return mac;
-}
+<div id="editor">
+    lista1 verbo1 lista2 verbo2
     
+    vc fazer AAA ir
     
-    lista1 comando lista2 lista3
+    eu dormir BBB voltar
     
-    vc quero dormir agora
+    ele comer CCC buscar
     
-    
-    true
-    
-    false
-    
-    blue
-    
-    arial
+    nos andar DDD voar
+
 </div>
+   
     
-<script src="ace-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-    var editor = ace.edit("editor");
-    //editor.setTheme("ace/theme/chrome");
-    editor.getSession().setMode("ace/mode/care");
+    <script src="ace/src/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/care");
 
-    editor.getSession().on('change', function (e) {
+        editor.getSession().on('change', function (e) {
 
-        console.log(e.data.action + ": " + e.data.text);
+            console.log(e.data.action + ": " + e.data.text);
 
+        });    
+    </script>
 
-    });
-    
-</script>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+
+            $("#editor").on("mouseover", "span[class^='ace_comment']", function (event) {
+                $(this).popover({
+                    placement: "top",
+                    animation: true,
+                    html: true,
+                    title: "Ações Lista1",
+                    content: "<input type='button' value='act1' class='btn-primary' /> <input type='button' value='act2' class='btn-warning'/> <input type='button' value='act3' class='btn-danger'/>"
+                });
+
+                $(this).popover("show");
+
+            });
+            
+            $("#editor").on("mouseover", "span[class^='ace_string']", function (event) {
+                $(this).popover({
+                    placement: "top",
+                    animation: true,
+                    html: true,
+                    title: "Ações Verbo1",
+                    content: "<input type='button' value='act1' class='btn-primary' /> <input type='button' value='act2' class='btn-warning'/> <input type='button' value='act3' class='btn-danger'/>"
+                });
+
+                $(this).popover("show");
+
+            });
+
+            $("#editor").on("mouseover", "span[class^='ace_variable']", function (event) {
+                $(this).popover({
+                    placement: "top",
+                    animation: true,
+                    html: true,
+                    title: "Ações Lista2",
+                    content: "<input type='button' value='act1' class='btn-primary' /> <input type='button' value='act2' class='btn-warning'/> <input type='button' value='act3' class='btn-danger'/>"
+                });
+
+                $(this).popover("show");
+
+            });
+
+            $("#editor").on("mouseover", "span[class^='ace_keyword']", function (event) {
+                $(this).popover({
+                    placement: "top",
+                    animation: true,
+                    html: true,
+                    title: "Ações Verbo2",
+                    content: "<input type='button' value='act1' class='btn-primary' /> <input type='button' value='act2' class='btn-warning'/> <input type='button' value='act3' class='btn-danger'/>"
+                });
+
+                $(this).popover("show");
+
+            });
+
+            $("#editor").on("mouseleave", "span", function (event) {
+                var element = $(this);
+                window.setTimeout(function () {
+                    element.popover("hide");
+                }, 1000);
+
+            });
+
+        });
+    </script>
 </body>
 </html>

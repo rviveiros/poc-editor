@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <div id="editor">
+        
+        <div>
+            <div id="9" class="y">
+                <div class="x" id="10">
+                    <span class="ace_comment">TESTE</span>
+                    
+                </div>
+                
+
+            </div>
+            
+
+
+        </div>
+        
+    </div>
+    
+    <button>clique</button>
+    
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script>
+        $(function () {
+
+            $("#editor").on("mouseover", "span[class^='ace_comment']", function (event) {
+
+                console.log($(this));
+
+            });
+
+            $("button").click(function() {
+
+                $("#10").append("<span class='ace_comment'>TESTE2</span>");
+
+                $("#9").append("<span class='ace_comment'>TESTE XXX</span>");
+
+            });
+
+        });
+
+
+
+    </script>
+</body>
+</html>
