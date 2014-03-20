@@ -13,6 +13,17 @@
         left: 0;
     }
 
+    #tokensBox {
+        position: absolute;
+        right: 0;
+        background-color: black;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        color: white;
+        z-index: 100;
+    }
+    
     .ace_comment {
         pointer-events: auto;
     }
@@ -45,10 +56,27 @@
 
 </div>
    
+    <div id="tokensBox">
+        <h5>Lista1:</h5>
+        <ul id="tokens_comment"></ul>
+        
+        <h5>Verbo1:</h5>
+        <ul id="tokens_string"></ul>
+        
+        <h5>Lista2:</h5>
+        <ul id="tokens_variable"></ul>
+        
+        <h5>Verbo2:</h5>
+        <ul id="tokens_keyword"></ul>
+    </div>
     
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
     <script src="ace/src/ace.js" type="text/javascript" charset="utf-8"></script>
     <script>
         var editor = ace.edit("editor");
+
         editor.setTheme("ace/theme/chrome");
         editor.getSession().setMode("ace/mode/care");
 
@@ -56,13 +84,12 @@
 
             console.log(e.data.action + ": " + e.data.text);
 
-        });    
-    </script>
+            loadTokensBox();
+        });
 
-    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script>
-        $(function() {
+        window.setTimeout(loadTokensBox, 200);
+        
+        $(function () {
 
             $("#editor").on("mouseover", "span[class^='ace_comment']", function (event) {
                 $(this).popover({
@@ -123,8 +150,21 @@
                 }, 1000);
 
             });
-
         });
+
+        function loadTokensBox() {
+            var tokens = ["comment", "string", "variable", "keyword"];
+
+            $(tokens).each(function (a, token) {
+                $("#tokens_" + token).html("");
+
+                $(".ace_" + token).each(function (b, item) {
+                    $("#tokens_" + token).append("<li>#" + b + " " + item.innerText + "</li>");
+                });
+
+            });
+        }
+
     </script>
 </body>
 </html>
