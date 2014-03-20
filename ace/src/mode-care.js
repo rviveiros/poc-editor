@@ -136,6 +136,8 @@ define('ace/mode/care_highlight_rules', function (require, exports, module) {
 
     var CareHighlightRules = function() {
 
+
+        // TODO: MELHORAR AS REGEX
         this.$rules = {
             "start" : [
                 {

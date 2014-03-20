@@ -87,17 +87,41 @@
             loadTokensBox();
         });
 
-        window.setTimeout(loadTokensBox, 200);
+        // TODO: DETECTAR O LOAD DO EDITOR
+        window.setTimeout(loadTokensBox, 500);
         
         $(function () {
 
+            // TODO: FAZER REFACTOR NOS EVENTOS
+
             $("#editor").on("mouseover", "span[class^='ace_comment']", function (event) {
                 $(this).popover({
+                    container: "body",
                     placement: "top",
-                    animation: true,
+                    animation: false,
                     html: true,
+                    trigger: "manual",
                     title: "Ações Lista1",
                     content: "<input type='button' value='act1' class='btn-primary' /> <input type='button' value='act2' class='btn-warning'/> <input type='button' value='act3' class='btn-danger'/>"
+                }).on("mouseenter", function () {
+                    var _this = this;
+                    $(this).popover("show");
+                    $(".popover").on("mouseleave", function () {
+                        $(_this).popover('hide');
+                    });
+                }).on("mouseleave", function () {
+                    var _this = this;
+                    var hide = function() {
+                        setTimeout(function () {
+                            if (!$(".popover:hover").length) {
+                                $(_this).popover("hide");
+                            } else {
+                                hide();
+                            }
+                        }, 100);
+                    };
+                    
+                    hide();
                 });
 
                 $(this).popover("show");
@@ -106,11 +130,26 @@
             
             $("#editor").on("mouseover", "span[class^='ace_string']", function (event) {
                 $(this).popover({
+                    container: "body",
                     placement: "top",
-                    animation: true,
+                    animation: false,
                     html: true,
+                    trigger: "manual",
                     title: "Ações Verbo1",
                     content: "<input type='button' value='act1' class='btn-primary' /> <input type='button' value='act2' class='btn-warning'/> <input type='button' value='act3' class='btn-danger'/>"
+                }).on("mouseenter", function () {
+                    var _this = this;
+                    $(this).popover("show");
+                    $(".popover").on("mouseleave", function () {
+                        $(_this).popover('hide');
+                    });
+                }).on("mouseleave", function () {
+                    var _this = this;
+                    setTimeout(function () {
+                        if (!$(".popover:hover").length) {
+                            $(_this).popover("hide");
+                        }
+                    }, 100);
                 });
 
                 $(this).popover("show");
@@ -119,37 +158,58 @@
 
             $("#editor").on("mouseover", "span[class^='ace_variable']", function (event) {
                 $(this).popover({
+                    container: "body",
                     placement: "top",
-                    animation: true,
+                    animation: false,
                     html: true,
+                    trigger: "manual",
                     title: "Ações Lista2",
                     content: "<input type='button' value='act1' class='btn-primary' /> <input type='button' value='act2' class='btn-warning'/> <input type='button' value='act3' class='btn-danger'/>"
+                }).on("mouseenter", function () {
+                    var _this = this;
+                    $(this).popover("show");
+                    $(".popover").on("mouseleave", function () {
+                        $(_this).popover('hide');
+                    });
+                }).on("mouseleave", function () {
+                    var _this = this;
+                    setTimeout(function () {
+                        if (!$(".popover:hover").length) {
+                            $(_this).popover("hide");
+                        }
+                    }, 100);
                 });
-
+                
                 $(this).popover("show");
-
             });
 
             $("#editor").on("mouseover", "span[class^='ace_keyword']", function (event) {
                 $(this).popover({
+                    container: "body",
                     placement: "top",
-                    animation: true,
+                    animation: false,
                     html: true,
+                    trigger: "manual",
                     title: "Ações Verbo2",
                     content: "<input type='button' value='act1' class='btn-primary' /> <input type='button' value='act2' class='btn-warning'/> <input type='button' value='act3' class='btn-danger'/>"
+                }).on("mouseenter", function () {
+                    var _this = this;
+                    $(this).popover("show");
+                    $(".popover").on("mouseleave", function () {
+                        $(_this).popover('hide');
+                    });
+                }).on("mouseleave", function () {
+                    var _this = this;
+                    setTimeout(function () {
+                        if (!$(".popover:hover").length) {
+                            $(_this).popover("hide");
+                        }
+                    }, 100);
                 });
 
                 $(this).popover("show");
-
             });
 
-            $("#editor").on("mouseleave", "span", function (event) {
-                var element = $(this);
-                window.setTimeout(function () {
-                    element.popover("hide");
-                }, 1000);
-
-            });
         });
 
         function loadTokensBox() {
